@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nuevo Viaje</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1>Registrar Nuevo Viaje</h1>
+      <form action="/viajes/guardar" th:object="${viaje}" method="post">
+        <div class="form-group">
+          <label for="puntoRecojo">Punto de Recojo:</label>
+          <input type="text" class="form-control" id="puntoRecojo" th:field="*{puntoRecojo}" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="cantPersonas">Cantidad de Personas:</label>
+          <input type="number" class="form-control" id="cantPersonas" th:field="*{cantPersonas}" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="cantPerros">Cantidad de Perros:</label>
+          <input type="number" class="form-control" id="cantPerros" th:field="*{cantPerros}" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="persona">Persona Titular:</label>
+          <select class="form-control" id="persona" th:field="*{persona.id}" required>
+            <option th:each="persona : ${personas}" th:value="${persona.id}" th:text="${persona.nombre}"></option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="lugar">Destino (Lugar):</label>
+          <select class="form-control" id="lugar" th:field="*{lugar.id}" required>
+            <option th:each="lugar : ${lugares}" th:value="${lugar.id}" th:text="${lugar.nombreLugar}"></option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar Viaje</button>
+      </form>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

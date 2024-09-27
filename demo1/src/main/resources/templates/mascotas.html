@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+    <body>
+        <h1>Lista de Mascotas</h1>
+
+  <nav>
+             <ul>
+                 <li><a th:href="@{/principal}">TravelCan</a></li>
+                <li><a th:href="@{/mascotas}">Mascotas</a></li>
+                    <li><a th:href="@{/lugares}">Lugares</a></li>
+
+        <div>
+            <button onclick="location.href='/mascotas/nueva'">Nueva Mascota</button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre Mascota</th>
+                        <th>Género</th>
+ <th>Fecha Nacimiento</th>
+                        <th>Vacunado</th>
+ <th>Desparasitado</ th>
+                          <th>Dueño</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="mascota : ${mascotas}">
+                        <td th:text="${mascota.nombreMascota}"></td>
+                        <td th:text="${mascota.genero}"></td>
+                         <td th:text="${mascota.edad}"></td>
+                        <td th:text="${mascota.fechaNacimiento}"></td>
+                        <td th:text="${mascota.vacunado ? 'Sí' : 'No'}"></td>
+                          <td th:text="${mascota.desparasitado ? 'Sí' : 'No'}"></td>
+                        <td th:text="${mascota.persona.nombre}"></td>
+                        <td>
+                            <div>
+                                <a th:href="@{/mascotas/detalles/{id}(id=${mascota.id})}">Ver detalles</a> |
+                                  <a th:href="@{/mascotas/editar/{id}(id=${mascota.id})}">Editar</a> |
+                                <a th:href="@{/mascotas/borrar/{id}(id=${mascota.id})}" onclick="return confirm('¿Está seguro que desea eliminar esta mascota?');">Borrar</a>
+                            </div>
+                         </td>
+                      </tr>
+                   </tbody>
+            </table>
+        </div>
+    </body>
+</html>

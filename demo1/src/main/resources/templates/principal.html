@@ -1,0 +1,22 @@
+<!-- src/main/resources/templates/index.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+
+        <title>Travelipal</title>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a th:href="@{/principal}">TravelCan</a></li>
+                 <li><a th:href="@{/viajes}">Viajes</a></li>
+                <li><a th:href="@{/mascotas}">Mascotas</a></li>
+                 <li><a th:href="@{/lugares}">Lugares</a></li>
+             </ul>
+         </nav>
+
+         <div>
+            <img src="/travel%20can_logo.png" alt="Logo de TravelCan"> <!-- Asegúrate de que la ruta y el nombre de archivo sean correctos -->
+        </div>
+    </body>
+</html>

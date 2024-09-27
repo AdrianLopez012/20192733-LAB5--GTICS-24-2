@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Lista de Viajes Programados</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" th:href="@{/principal}">TravelCan</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/viajes}">Viajes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/mascotas}">Mascotas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/lugares}">Lugares</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container mt-5">
+            <h1 class="mb-4">Lista de Viajes Programados</h1>
+
+            <!-- Botón para crear un nuevo viaje -->
+            <button type="button" class="btn btn-primary mb-3" onclick="location.href='/viajes/nuevo'">Nuevo Viaje</button>
+
+            <!-- Tabla que lista los viajes -->
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Persona Titular</th>
+                        <th>Destino</th>
+                        <th>Cantidad de Perros</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="viaje : ${viajes}">
+                        <td th:text="${viaje.persona.nombre}"></td>
+                        <td th:text="${viaje.lugar.nombreLugar}"></td>
+                        <td th:text="${viaje.cantPerros}"></td>
+                        <td>
+                            <!-- Botón de acciones desplegable -->
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Acciones
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" th:href="@{/viajes/detalles/{id}(id=${viaje.id})}">Ver detalles</a>
+                                    <a class="dropdown-item" th:href="@{/viajes/editar/{id}(id=${viaje.id})}">Editar</a>
+                                    <a class="dropdown-item" th:href="@{/viajes/borrar/{id}(id=${viaje.id})}" onclick="return confirm('¿Está seguro que desea eliminar este viaje?');">Borrar</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bootstrap JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> <!-- Usando Popper.js v1.16.1 -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>

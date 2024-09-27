@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>ListaGAAAAA</title>
+       </head>
+    <body>
+
+        <nav>
+             <ul>
+                <li><a th:href="@{/principal}">TravelCan</a></li>
+                <li><a th:href="@{/viajes}">Viajes</a></li>
+                <li><a th:href="@{/mascotas}">Mascotas</a></li>
+                 <li><a th:href="@{/lugares}">Lugares</a></li>
+               </ul>
+        </nav>
+
+        <h1>Lista de Viajes Programados</h1>
+
+
+        <button onclick="location.href='/viajes/nuevo'">Nuevo Viaje</button>
+
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Persona Titular</th>
+                    <th>Destino</th>
+                    <th>Cantidad de Perros</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="viaje : ${viajes}">
+                    <td th:text="${viaje.persona.nombre}"></td>
+                    <td th:text="${viaje.lugar.nombreLugar}"></td>
+                    <td th:text="${viaje.cantPerros}"></td>
+                    <td>
+                        <div>
+                            <a th:href="@{/viajes/detalles/{id}(id=${viaje.id})}">Ver detalles</a> |
+                              <a th:href="@{/viajes/editar/{id}(id=${viaje.id})}">Editar</a> |
+                            <a th:href="@{/viajes/borrar/{id}(id=${viaje.id})}" onclick="return confirm('¿Está seguro que desea eliminar este viaje?');">Borrar</a>
+                        </div>
+                      </td>
+                </tr>
+                </tbody>
+        </table>
+     </body>
+</html>

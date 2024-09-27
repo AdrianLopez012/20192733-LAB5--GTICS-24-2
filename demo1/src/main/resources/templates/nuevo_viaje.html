@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+
+  </head>
+  <body>
+    <h1>Registrar Nuevo Viaje</h1>
+    <form action="/viajes/guardar" th:object="${viaje}" method="post">
+
+      <div>
+        <label for="puntoRecojo">Punto de Recojo:</label>
+        <input type="text" id="puntoRecojo" th:field="*{puntoRecojo}" required/>
+      </div>
+
+      <div>
+        <label for="cantPersonas">Cantidad de Personas:</label>
+        <input type="number" id="cantPersonas" th:field="*{cantPersonas}" required/>
+      </div>
+
+      <div>
+        <label for="cantPerros">Cantidad de Perros:</label>
+        <input type="number" id="cantPerros" th:field="*{cantPerros}" required/>
+      </div>
+
+      <div>
+        <label for="persona">Persona Titular:</label>
+        <select id="persona" th:field="*{persona.id}" required>
+          <option th:each="persona : ${personas}" th:value="${persona.id}" th:text="${persona.nombre}"></option>
+        </select>
+      </div>
+
+      <div>
+        <label for="lugar">Destino (Lugar):</label>
+        <select id="lugar" th:field="*{lugar.id}" required>
+          <option th:each="lugar : ${lugares}" th:value="${lugar.id}" th:text="${lugar.nombreLugar}"></option>
+        </select>
+      </div>
+
+      <button type="submit">Guardar Viaje</button>
+    </form>
+  </body>
+</html>
